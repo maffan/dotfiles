@@ -1,0 +1,5 @@
+[user]
+	email = marcus.flyckt@gmail.com
+	name = Marcus Flyckt
+[alias]
+	gl = log --all --graph --decorate
