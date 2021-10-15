@@ -47,7 +47,9 @@ Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 Plug 'ycm-core/YouCompleteMe'
 if !has("win32")
-  Plug 'yegappan/taglist'
+  if executable('ctags')
+    Plug 'yegappan/taglist'
+  endif
 endif
 call plug#end()
 " vim-plug }}}
