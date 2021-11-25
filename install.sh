@@ -30,6 +30,7 @@ symlink() {
 		echo "$dst already exists"
 		backup "$dst"
 	fi
+	echo "Adding link $dst"
 	ln -frs "$src" "$dst"
 }
 
