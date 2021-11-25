@@ -4,7 +4,8 @@ BACKUP_DIR="./backup"
 
 backup() {
 	local src="${1?No file to backup}"
-	local dst="$BACKUP_DIR/$(basename $src)"
+	local dst=""
+	dst="$BACKUP_DIR/$(basename "$src")"
 	if [ ! -f "$src" ]; then
 	echo "backup: $src is not a regular file"
 		return 1
