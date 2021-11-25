@@ -22,6 +22,10 @@ symlink() {
 		return 1
 	fi
 	if [ -e "$dst" ]; then
+		if [ -h "$dst" ]; then
+			echo "Ignoring symbolic link $dst"
+			return
+		fi
 		echo "$dst already exists"
 		backup "$dst"
 	fi
