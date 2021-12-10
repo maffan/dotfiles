@@ -14,7 +14,7 @@ CODE="$(cat)"
 
 generate_c_program "$CODE" > "$TEMP_FILE"
 
-gcc -xc "$TEMP_FILE" -o "$TEMP_EXECUTABLE"
+gcc -xc "$TEMP_FILE" -o "$TEMP_EXECUTABLE" 2>/dev/null
 
 "$TEMP_EXECUTABLE"
 

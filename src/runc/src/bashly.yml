@@ -2,6 +2,11 @@ name: runc
 help: Quickly compile and run a C program
 version: 0.0.1
 
+environment_variables:
+  - name: c_lib_dir
+    help: Location of c libraries
+    default: $HOME/dotfiles/src/runc/src/c_lib
+
 examples:
 - |
   runc <<EOF

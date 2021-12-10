@@ -14,9 +14,21 @@ generate_c_program() {
   cat <<-EOF
     #include <stdio.h>
     #include <stdlib.h>
-
+EOF
+  for lib in "${C_LIB_DIR?No c_lib dir}"/*.c; do
+    sed -n '/\bHEADER_START/,/\bHEADER_END/p' "$lib"
+  done
+  for lib in "${C_LIB_DIR?No c_lib dir}"/*.c; do
+    sed -n '/\bFUNCTIONS_START/,/\bFUNCTIONS_END/p' "$lib"
+  done
+  cat <<-EOF
     int main(int argc, char *argv[])
     {
+EOF
+  for lib in "${C_LIB_DIR?No c_lib dir}"/*.c; do
+    sed -n '/\bMAIN_CODE_START/,/\bMAIN_CODE_END/p' "$lib"
+  done
+  cat <<-EOF
       $code
     }
 EOF
