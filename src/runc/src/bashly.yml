@@ -1,0 +1,9 @@
+name: runc
+help: Quickly compile and run a C program
+version: 0.0.1
+
+examples:
+- |
+  runc <<EOF
+    printf("Hello world!\n");
+  EOF

@@ -4,20 +4,14 @@ else
     let $VIMDIR = "~/.vim"
 endif
 
-let $PLUGDIRECTORY = $VIMDIR . "/plugged"
+if has('nvim')
+  let $PLUGDIRECTORY = stdpath('data') . '/plugged'
+else
+  let $PLUGDIRECTORY = $VIMDIR . "/plugged"
+endif
 
 " Plugin stuff {{{
 " vim-plug {{{
-if empty(glob($VIMDIR . '/autoload/plug.vim'))
-if has("win32")
-    silent !iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |` ni $HOME/vimfiles/autoload/plug.vim -Force
-else
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-
-endif
 
 " Set leader
 let mapleader = "\\"
@@ -45,7 +39,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
 if !has("win32")
   if executable('ctags')
     Plug 'yegappan/taglist'
@@ -53,6 +47,7 @@ if !has("win32")
 endif
 call plug#end()
 " vim-plug }}}
+
 
 " UltiSnip
 
@@ -144,11 +139,11 @@ if has('cscope')
     endif
     set cscopequickfix=s-,c-,d-,i-,t-,e-
     " Prepare for references lookup
-    nnoremap <leader>cfr :cscope find s 
+    nnoremap <leader>cfr :cscope find s
     " Prepare for definition lookup
-    nnoremap <leader>cfd :cscope find g 
+    nnoremap <leader>cfd :cscope find g
     " Lookup calls to the function under cursor
-    nnoremap <leader>cfc :cscope find c 
+    nnoremap <leader>cfc :cscope find c
 
     " Lookup references for symbol under cursor
     nnoremap <leader>cr :cscope find s <C-R>=expand("<cword>")<CR><CR>
@@ -198,7 +193,7 @@ set showcmd
 set laststatus=2
 " The default value doesn't work on windows systems, since tags and TAGS maps
 " to the same file
-" First look for 'tags' file in current directory, 
+" First look for 'tags' file in current directory,
 set tags=./tags,tags
 
 
@@ -207,7 +202,7 @@ set statusline=%<
 " Filename
 set statusline+=%f
 " Space
-set statusline+=\ 
+set statusline+=\
 " Filetype
 set statusline+=%y
 " [help]
@@ -225,7 +220,7 @@ set statusline+="%-14."
 " Group containing line number, Column number and Virtual column number
 set statusline+="(%l,%c%V%)"
 " Space
-set statusline+=\ 
+set statusline+=\
 " Percentage of file displayed
 set statusline+=%P
 
