@@ -34,8 +34,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/vim-easy-align'
 " syntax highlight for combined HTML/Jinja files
 Plug 'glench/vim-jinja2-syntax'
-" Syntax checking. Do I need both this and Ale?
-Plug 'vim-syntastic/syntastic'
 " Gruvbox color scheme
 Plug 'morhetz/gruvbox'
 " File tree view
