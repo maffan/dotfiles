@@ -18,36 +18,44 @@ let mapleader = "\\"
 let maplocalleader = "\<space>"
 
 call plug#begin($PLUGDIRECTORY)
+" Linting and Language Server Protocol client
 Plug 'dense-analysis/ale'
+" Easy comment out lines with gc
 Plug 'tpope/vim-commentary'
+" Git plugin
 Plug 'tpope/vim-fugitive'
+" Git branch viewer
 Plug 'rbong/vim-flog'
+" Find files
 Plug 'ctrlpvim/ctrlp.vim'
+" Adds filetype glyphs
 Plug 'ryanoasis/vim-devicons'
+" Align rows with ga
 Plug 'junegunn/vim-easy-align'
+" syntax highlight for combined HTML/Jinja files
 Plug 'glench/vim-jinja2-syntax'
-" Plug 'tpope/vim-flagship'
+" Syntax checking. Do I need both this and Ale?
 Plug 'vim-syntastic/syntastic'
+" Gruvbox color scheme
 Plug 'morhetz/gruvbox'
-Plug 'embear/vim-localvimrc'
+" File tree view
 Plug 'preservim/nerdtree'
+" Prettier nerdtree. (Uses vim-devicons)
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Syntax highlight for markdown files
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'mtth/scratch.vim'
+" A universal set of defaults that (hopefully) everyone can agree on
 Plug 'tpope/vim-sensible'
+" Automatically adjust shiftwidth and expandtab
 Plug 'tpope/vim-sleuth'
-Plug 'honza/vim-snippets'
-Plug 'tpope/vim-surround'
+" Snippets engine
 Plug 'SirVer/ultisnips'
-" Plug 'ycm-core/YouCompleteMe'
-if !has("win32")
-  if executable('ctags')
-    Plug 'yegappan/taglist'
-  endif
-endif
+" Snippets repo
+Plug 'honza/vim-snippets'
+" Surround things with stuff
+Plug 'tpope/vim-surround'
 call plug#end()
 " vim-plug }}}
-
 
 " UltiSnip
 
@@ -58,46 +66,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" YCM
-" Lookup symbol in entire workspace
-nmap <leader>yfw <Plug>(YCMFindSymbolInWorkspace)
-" Lookup symbol in current document
-nmap <leader>yfd <Plug>(YCMFindSymbolInDocument)
-" Find declaration
-nmap <leader>yd :YcmCompleter GoToDeclaration<CR>
-" Find all references
-nmap <leader>yr :YcmCompleter GoToReferences<CR>
-" Toggle hover box
-nmap <leader>d <Plug>(YCMHover)
-
-let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-let g:ycm_collect_identifiers_from_tags_filesmap=1
-let g:ycm_extra_conf_globlist=['/mnt/c/repos/*']
-let g:force_test=0
-let g:ycm_extra_conf_vim_data=['g:force_test']
-let g:ycm_always_populate_location_list = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_disable_for_files_larger_than_kb = 3000
-
-" Taglist
-nnoremap <leader>tl :TlistToggle<CR>
-let g:Glist_Show_One_File=1
-
 " commentary
 augroup c_comment
     autocmd!
     autocmd FileType c setlocal commentstring=//%s
 augroup END
-
-" flagship
-" set showtabline=2
-" set guioptions-=e
-
-" localvimrc
-let g:localvimrc_sandbox = 0
-let g:localvimrc_ask = 0
 
 " CtrlP
 let g:ctrlp_clear_cache_on_exit = 1
@@ -124,6 +97,13 @@ colorscheme gruvbox
 
 " pandoc
 let g:pandoc#modules#disabled = ["folding"]
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+augroup pandoc_syntax
+    autocmd! FileType vimwiki set syntax=markdown.pandoc
+augroup END
 
 " cscope
 if has('cscope')
@@ -224,7 +204,6 @@ set statusline+=\
 " Percentage of file displayed
 set statusline+=%P
 
-
 " Functions
 function! TemplateReplace()
     " Replace '-' and '_' with spaces
@@ -268,10 +247,6 @@ nnoremap _ kddpk
 nnoremap <leader>ev :vsplit $MYVIMRC<cr><c-w>H
 " Reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
-" Edit local vimrc
-nnoremap <leader>elv :LocalVimRCEdit<cr>
-" Reload local vimrc
-nnoremap <leader>slv :LocalVimRC<cr>
 " Disable arrow keys
 nnoremap <up> <nop>
 nnoremap <right> <nop>
