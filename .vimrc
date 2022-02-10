@@ -52,8 +52,16 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Surround things with stuff
 Plug 'tpope/vim-surround'
+" Personal wiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
 " vim-plug }}}
+
+" Vimwiki
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 " UltiSnip
 
