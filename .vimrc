@@ -18,18 +18,16 @@ let mapleader = "\\"
 let maplocalleader = "\<space>"
 
 call plug#begin($PLUGDIRECTORY)
-" Linting and Language Server Protocol client
-Plug 'dense-analysis/ale'
 " Easy comment out lines with gc
 Plug 'tpope/vim-commentary'
 " Git plugin
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 " Git branch viewer
-Plug 'rbong/vim-flog'
+"Plug 'rbong/vim-flog'
 " Find files
 Plug 'ctrlpvim/ctrlp.vim'
 " Adds filetype glyphs
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 " Align rows with ga
 Plug 'junegunn/vim-easy-align'
 " syntax highlight for combined HTML/Jinja files
@@ -39,17 +37,13 @@ Plug 'morhetz/gruvbox'
 " File tree view
 Plug 'preservim/nerdtree'
 " Prettier nerdtree. (Uses vim-devicons)
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Syntax highlight for markdown files
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " A universal set of defaults that (hopefully) everyone can agree on
 Plug 'tpope/vim-sensible'
 " Automatically adjust shiftwidth and expandtab
 Plug 'tpope/vim-sleuth'
-" Snippets engine
-Plug 'SirVer/ultisnips'
-" Snippets repo
-Plug 'honza/vim-snippets'
 " Surround things with stuff
 Plug 'tpope/vim-surround'
 " Personal wiki
@@ -198,7 +192,7 @@ set statusline+=%m
 " [RO]
 set statusline+=%r
 " Git information
-set statusline+=%{FugitiveStatusline()}
+" set statusline+=%{FugitiveStatusline()}
 " Align following to the right
 set statusline+=%=
 " Left justify with minimum width of 14, no maximum width
